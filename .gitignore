@@ -1,5 +1,6 @@
 /venv
 \#*\#
 *~
-.tar
-.tex
+*.tar
+*.tex
+*.pdf
