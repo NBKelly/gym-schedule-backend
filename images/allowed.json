@@ -1,3 +1,2 @@
-{
-    "allowed": ["images/deadlift.png"]
-}
+{"allowed": ["images/back extension - floor.jpg", "images/Barbell Curl.jpg", "images/cable row.jpg", "images/DB Upright Row.jpg", "images/deadlift.jpg", "images/hammer curl.jpg", "images/kettlebell swing.jpg", "images/Lat pulldown - wide grip.jpg", "images/leg extension b.jpg", "images/Leg Extension (single).jpg", "images/leg press single leg.jpg", "images/preacher curl.jpg", "images/Push Press.jpg", "images/reverse curl.jpg", "images/romanian deadlift.jpg", "images/seated rows.jpg", "images/shoulder-press-machine.jpg", "images/Stiff Leg Deadlift.jpg", "images/Wall Squat.jpg", "images/wrist-roller.jpg", "images/EZ Curl.png", "images/treadmill.jpg"],
+ "folders": ["male/", "female/", "anime/", ""]}

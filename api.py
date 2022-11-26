@@ -14,6 +14,7 @@ app = Flask(__name__)
 CORS(app)
 
 approvedList = set(json.load(open("images/allowed.json"))['allowed'])
+approvedFolders = set(json.load(open("images/allowed.json"))['folders'])
 
 ## checks that every supplied image is on the approved images list
 def verifyImages(images):
@@ -26,6 +27,35 @@ def verifyImages(images):
             return "bad image (image not on allowed list - malformed name or type): " + image
 
     return True
+
+## this is predicated on the images being on the approved list/existing already
+def replaceImages(images, imagePrefs, latex):
+    new_images = []
+    for image in images:
+        #all images are prefased with "image/"
+        # we want to change it to "image/[pref]"
+        found = False;
+        for pref in imagePrefs:
+            if(pref = ""):
+                #new_images.append(image)
+                #found = True
+                break
+            ## see if a new image exists to replace the old one
+            new_image = images.replace("images/", "images/" + pref)
+            if os.path.exists(new_image):
+                latex.replace(image, new_image)
+                new_images.append(new_image)
+                found = True
+                break
+
+        if not found:
+            new_images.append(image)
+
+
+    images.clear()
+    images.extend(new_images)
+
+    return latex
 
 ## packs the latex file into the tar (without actually making a new file)
 def packFile(content, name, archive):
@@ -77,6 +107,7 @@ def respond():
     #get name from url
     latex = request.json.get("latex", None)
     images = request.json.get("images", None)
+    prefs = request.json.get("imageprefs", None)
 
     latexLen = "latex size: " + str(len(latex)) + " characters "
 
@@ -90,6 +121,9 @@ def respond():
         response.headers['Content-Type'] = 'text/plain'
         response.status_code = 400
         return response
+
+    ## replace the images if we can
+    latex = replaceImages(images, prefs, latex)
 
     ## tarname should be unique for each client
     ## on the chance it clashes, who cares, they can just run it back
