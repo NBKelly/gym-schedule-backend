@@ -36,7 +36,7 @@ def replaceImages(images, imagePrefs, latex):
         # we want to change it to "image/[pref]"
         found = False;
         for pref in imagePrefs:
-            if(pref = ""):
+            if(pref == ""):
                 #new_images.append(image)
                 #found = True
                 break
