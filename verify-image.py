@@ -13,7 +13,8 @@ num_args = len(sys.argv)
 
 for i in range (1, num_args):
     image = sys.argv[i]
-    allowedImages['allowed'].append(image)
+    if not image in allowedImages['allowed']:
+        allowedImages['allowed'].append(image)
     #print(image)
 
 output.write(json.dumps(allowedImages))

@@ -41,7 +41,7 @@ def replaceImages(images, imagePrefs, latex):
                 #found = True
                 break
             ## see if a new image exists to replace the old one
-            new_image = images.replace("images/", "images/" + pref)
+            new_image = image.replace("images/", "images/" + pref)
             if os.path.exists(new_image):
                 latex.replace(image, new_image)
                 new_images.append(new_image)
