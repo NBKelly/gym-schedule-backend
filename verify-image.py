@@ -17,7 +17,7 @@ for i in range (1, num_args):
         allowedImages['allowed'].append(image)
     #print(image)
 
-output.write(json.dumps(allowedImages))
+output.write(json.dumps(allowedImages, indent=2))
 output.close()
-print(json.dumps(allowedImages))
+print(json.dumps(allowedImages, indent=2))
 #print(allowedImages)
